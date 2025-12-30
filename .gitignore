@@ -1,0 +1,13 @@
+Include/
+Lib/
+Scripts/
+share/
+pyvenv.cfg
+training_data/
+rag/
+transformer_results/
+checkpoint-*/
+tensorboard_logs/
+*.faiss
+*.pkl
+*.safetensors
