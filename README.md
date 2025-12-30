@@ -32,7 +32,7 @@ Base model + LoRA  ← (this supplies behavior)
   ↓
 Answer
 
-
+```mermaid
 flowchart TB
 
   %% 1) SOURCE BOOKS
