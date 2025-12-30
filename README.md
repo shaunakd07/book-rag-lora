@@ -123,13 +123,13 @@ flowchart TB
   I3 --> I4
   I4 --> I5
   I5 --> I6
-
-
+```
+```mermaid
 sequenceDiagram
   autonumber
   participant U as User
   participant PY as book_inference.py (your code)
-  participant ST as SentenceTransformer (embedder)
+  participant ST as SentenceTransformer embedder
   participant F as FAISS index
   participant LLM as Base model + LoRA adapter
 
@@ -137,7 +137,9 @@ sequenceDiagram
   PY->>ST: encode(q) -> q_emb
   PY->>F: search(q_emb, k) -> top-k ids
   F-->>PY: ids + scores
-  PY->>PY: context = join(chunks[ids], "\n\n---\n\n")
-  PY->>LLM: prompt = SYSTEM + USER(CONTEXT FROM BOOK + QUESTION)\nGenerate(...)
+  PY->>PY: context = join(chunks[ids], "\\n\\n---\\n\\n")
+  PY->>LLM: prompt = SYSTEM + USER(CONTEXT + QUESTION)
   LLM-->>PY: answer text (grounded or ABSTAIN)
-  PY-->>U: print answer 
+  PY-->>U: return answer
+```
+
