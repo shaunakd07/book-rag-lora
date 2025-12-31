@@ -53,7 +53,7 @@ This json file contains q/a pairs extracted from the text using any model of you
     
     "--lora_path", required=True, help="Path to LoRA adapter directory"
     
-    Temperature, repetition_penalty, system prompt, etc. can be adjusted to alter style or improve performance. 
+Temperature, repetition_penalty, system prompt, etc. can be adjusted to alter style or improve performance. 
     
     
 Pipeline explained further:
