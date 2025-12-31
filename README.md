@@ -15,27 +15,29 @@ Build a RAG FAISS index using book_rag.py:
     
     "--out_dir", required=True, help="Output directory for rag artifacts"
     
-    Uses a all-MiniLM-L6-v2 SentenceTransformer model by default, creates chunks with overlap that are saved as pkl files.
+Uses a all-MiniLM-L6-v2 SentenceTransformer model by default, creates chunks with overlap that are saved as pkl files.
+
 
     
 Create a RAG aligned jsonl using book_format.py:
 
-  "--input_dir", required=True, help="Directory containing .txt files."
+    "--input_dir", required=True, help="Directory containing .txt files."
   
-  "--output_file", required=True, help="Path to write JSONL training data."
+    "--output_file", required=True, help="Path to write JSONL training data."
   
-  "--model", default="gpt-4o-mini", help="Model used to generate QA pairs."
+    "--model", default="gpt-4o-mini", help="Model used to generate QA pairs."
   
-  This json file contains q/a pairs extracted from the text using any model of your choice. 
+This json file contains q/a pairs extracted from the text using any model of your choice. 
   
+
   
 Train LoRa on q/a pairs for conversation style using book_train.py:
 
-  "--data_path", required=True, help="Path to formatted JSONL from book_format.py"
+    "--data_path", required=True, help="Path to formatted JSONL from book_format.py"
   
-  "--base_model", default='meta-llama/Llama-3.2-1B-Instruct', help="HF base model id/path (e.g. meta-llama/..., mistralai/...)"
+    "--base_model", default='meta-llama/Llama-3.2-1B-Instruct', help="HF base model id/path (e.g. meta-llama/..., mistralai/...)"
   
-  "--output_dir", required=True
+    "--output_dir", required=True
   
   
 Perform inference using book_inference.py:
@@ -49,6 +51,7 @@ Perform inference using book_inference.py:
     "--lora_path", required=True, help="Path to LoRA adapter directory"
     
     Temperature, repetition_penalty, system prompt, etc. can be adjusted to alter style or improve performance. 
+    
     
 Pipeline explained further:
 
