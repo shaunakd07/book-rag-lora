@@ -9,7 +9,7 @@ This is a pipeline to create a q/a chatbot that has a trained LoRa adapter (to f
 
 Overview
 
-Build a RAG FAISS index using book_rag.py:
+1- Build a RAG FAISS index using book_rag.py:
 
     "--input_dir", required=True, help="Directory of .txt files"
     
@@ -18,8 +18,9 @@ Build a RAG FAISS index using book_rag.py:
 Uses a all-MiniLM-L6-v2 SentenceTransformer model by default, creates chunks with overlap that are saved as pkl files.
 
 
+
     
-Create a RAG aligned jsonl using book_format.py:
+2- Create a RAG aligned jsonl using book_format.py:
 
     "--input_dir", required=True, help="Directory containing .txt files."
   
@@ -30,8 +31,9 @@ Create a RAG aligned jsonl using book_format.py:
 This json file contains q/a pairs extracted from the text using any model of your choice. 
   
 
+
   
-Train LoRa on q/a pairs for conversation style using book_train.py:
+3- Train LoRa on q/a pairs for conversation style using book_train.py:
 
     "--data_path", required=True, help="Path to formatted JSONL from book_format.py"
   
@@ -39,8 +41,9 @@ Train LoRa on q/a pairs for conversation style using book_train.py:
   
     "--output_dir", required=True
   
+
   
-Perform inference using book_inference.py:
+4- Perform inference using book_inference.py:
 
     "--rag_dir", required=True, help="Directory containing all_chunks.pkl, chunk_metadata.pkl, rag_index.faiss"
     
