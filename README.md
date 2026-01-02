@@ -54,7 +54,8 @@ This json file contains q/a pairs extracted from the text using any model of you
     "--lora_path", required=True, help="Path to LoRA adapter directory"
     
 Temperature, repetition_penalty, system prompt, etc. can be adjusted to alter style or improve performance. 
-    
+
+Use app_gradio.py for gradio visualization
     
 Pipeline explained further:
 
