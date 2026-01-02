@@ -14,15 +14,6 @@ ABSTAIN = "I don't know based on the provided context."
 
 
 def find_last_assistant_span(input_ids: List[int], tokenizer) -> int:
-    """
-    Best-effort: we train only on the assistant answer tokens.
-    We locate the last occurrence of the assistant prefix by using the chat template.
-
-    This approach is robust across templates because we generate:
-      prefix = chat_template(messages up to assistant with add_generation_prompt=True)
-    Then full = chat_template(all messages)
-    The assistant answer begins at len(prefix_ids).
-    """
     raise NotImplementedError
 
 
@@ -85,7 +76,7 @@ def main() -> None:
         lora_dropout=args.lora_dropout,
         bias="none",
         task_type="CAUSAL_LM",
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj"]  # adjust if your model differs
+        target_modules=["q_proj", "k_proj", "v_proj", "o_proj"]  
     )
     model = get_peft_model(model, lora)
 

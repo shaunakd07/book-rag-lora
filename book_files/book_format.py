@@ -97,11 +97,11 @@ def generate_qa_from_chunk(
         "Given a CONTEXT passage, write a JSON array (no markdown fences) of up to "
         f"{max_qas} objects with keys: question, answer, answerable.\n\n"
         "Rules:\n"
-        "1) Every question must be answerable ONLY from the provided CONTEXT.\n"
-        "2) If a question is NOT answerable from the CONTEXT, set answerable=false and "
+        "1) Every question must be answerable ONLY from the provided CONTEXT. Ask a mix of straightforward fact-based questions and complex, deep questions that require examples and details to answer.\n"
+        "2)Do not ask any questions about ISBN numbers or publishing information. \n"
+        "3) If a question is NOT answerable from the CONTEXT, set answerable=false and "
         f'answer must be exactly: "{ABSTAIN}".\n'
-        "3) Keep answers short and directly supported by the CONTEXT (1–4 sentences).\n"
-        "4) Do not use outside knowledge. Do not invent details.\n"
+        "4) Do not use outside knowledge. Do not invent details. Include 2-5 relevant details from context.\n"
         "5) Return ONLY valid JSON.\n"
     )
 
@@ -159,12 +159,11 @@ def generate_qa_from_chunk(
 def to_chat_example(context: str, question: str, answer: str) -> Dict[str, Any]:
     """
     Produce one JSONL line in chat fine-tuning format that is RAG-aligned:
-    - System sets strict grounding behavior
-    - User provides CONTEXT + QUESTION
-    - Assistant answers (or abstains)
     """
     system = (
         "You are a helpful assistant answering questions about a book.\n"
+        "Answer in 1–3 paragraphs.\n"
+        "Include 2–5 specific details from the context.\n"
         "You must ONLY use the provided CONTEXT FROM BOOK.\n"
         f'If the answer is not in the context, say: "{ABSTAIN}".'
     )
@@ -183,7 +182,7 @@ def main() -> None:
     parser.add_argument("--input_dir", required=True, help="Directory containing .txt files.")
     parser.add_argument("--output_file", required=True, help="Path to write JSONL training data.")
     parser.add_argument("--model", default="gpt-4o-mini", help="OpenAI model used to generate QA pairs.")
-    parser.add_argument("--chunk_size", type=int, default=3000, help="Chunk size in characters.")
+    parser.add_argument("--chunk_size", type=int, default=5000, help="Chunk size in characters.")
     parser.add_argument("--overlap", type=int, default=200, help="Chunk overlap in characters.")
     parser.add_argument("--max_qas_per_chunk", type=int, default=8, help="Max QA objects to generate per chunk.")
     parser.add_argument("--temperature", type=float, default=0.2, help="Sampling temperature for QA generation.")
