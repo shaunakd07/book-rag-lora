@@ -3,7 +3,7 @@ README
 
 Chat with any book!
 
-This is a pipeline to create a q/a chatbot that has a trained LoRa adapter (to fine tune for conversation style) and a RAG of any book(s). By default, it uses a llama-1b-instruct model to chat with the text. 
+This is a pipeline to create a q/a chatbot that has a trained LoRa adapter (to fine tune for conversation style) and a RAG of any book(s). By default, it uses a gpt4o. 
 
 
 
